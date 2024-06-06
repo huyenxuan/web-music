@@ -112,6 +112,16 @@ header h2 {
     background-color: var(--primary-color);
 }
 
+.time {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+.time .countdownTime,
+.time .endTime {
+    display: flex;
+}
 .progress {
     width: 100%;
     /* -webkit-appearance: none; */

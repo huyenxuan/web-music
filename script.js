@@ -31,6 +31,10 @@ const btnRepeat = $('.btn-repeat');
 const progress = $('#progress');
 
 const btnPlay = $('.btn-toggle-play');
+const minutes = $('.countdownTime .minutes');
+const seconds = $('.countdownTime .seconds');
+const minutesAll = $('.endTime .minutes');
+const secondsAll = $('.endTime .seconds');
 
 // api music
 const app = {
@@ -191,8 +195,20 @@ const app = {
             if (audio.duration) {
                 const progressPercent = curTime / audio.duration * 100;
                 progress.value = progressPercent;
+
+                // hiện thời lượng bài hát
+                let minuteAll = Math.floor(audio.duration / 60);
+                minutesAll.innerText = minuteAll < 10 ? '0' + minuteAll : minuteAll;
+                const secondAll = Math.floor(audio.duration % 60);
+                console.log(Math.floor(audio.duration % 60))
+                secondsAll.innerText = secondAll < 10 ? '0' + secondAll : secondAll;
             }
 
+            // hiện tgian hiện tại bài hát
+            let minute = Math.floor(curTime / 60);
+            minutes.innerText = minute < 10 ? '0' + minute : minute;
+            let second = Math.floor(curTime % 60);
+            seconds.innerText = second < 10 ? '0' + second : second;
         }
 
         // xử lý khi tua khi tua 
@@ -267,6 +283,8 @@ const app = {
         author.textContent = this.curSong.single;
         cdThumb.style.background = `url('${this.curSong.image}')`
         audio.src = this.curSong.path;
+
+
 
         console.log(heading, cdThumb, audio);
     },
